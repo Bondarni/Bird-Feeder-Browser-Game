@@ -6,15 +6,32 @@ body {
   justify-content: center;
 }
 
-#timer {
+#clock {
+  display: block;
   background-color: blueviolet;
   height: 60px;
   width: 120px;
 }
 
+#start-game {
+  display: block;
+  height: 80px;
+  width: 120px;
+  background-color: white;
+  color: red;
+  border: solid 3px black;
+  grid-column-start: 3;
+}
+
 #points {
+  display: block;
   grid-column-start: 5;
   grid-column-end: auto;
+}
+
+#game-area {
+  grid-column-start: 2;
+  grid-column-end: 5;
 }
 
 #foh {
@@ -38,7 +55,7 @@ body {
 
 .customer {
   height: 50px;
-  weight: 50px;
+  width: 50px;
   margin: 10px;
   background-color: blue;
 }
