@@ -1,33 +1,42 @@
 let score = 0
 let scoreBoard = document.querySelector('#points')
 const foods = document.querySelectorAll('.food')
+const seeds = document.querySelector('#Seed')
+const grains = document.querySelector('#Grain')
+const berries = document.querySelector('#Berry')
 const plates = document.querySelectorAll('.plate')
-const bird = document.querySelectorAll('.customer')
+const birds = document.querySelectorAll('.customer')
 const time = document.querySelector('#timer')
 let handsEmpty = true
-console.log(foods)
+
 let emptyHands = () => {
   handsEmpty = true
 }
-let grabFood = () => {
+let grabFood = (event) => {
+  dishName = event.target.innerText
   handsEmpty = false
-  console.log(`You picked up ${foods.innerText}`)
+  console.log("You're holding a " + dishName + '!')
 }
 let orderUp = () => {
   if (handsEmpty === false) {
     score += 10
     scoreBoard.innerText = score
-    console.log('You put down food')
+    console.log('Order up!')
     emptyHands()
   } else {
-    console.log("Where's the Beef?")
+    score -= 5
+    scoreBoard.innerText = score
+    console.log("Uh...Where's my food?")
   }
 }
+
+// seeds.addEventListener('click', grabFood)
+// grains.addEventListener('click', grabFood)
+// berries.addEventListener('click', grabFood)
 
 foods.forEach(function (food) {
   food.addEventListener('click', grabFood)
 })
-
 plates.forEach(function (plate) {
   plate.addEventListener('click', orderUp)
 })
