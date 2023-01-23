@@ -15,22 +15,24 @@ Be the change you want to see in the world, and sling those seeds to keep those 
 - HTML / CSS / Javascript / Adobe Fresco / GarageBand
 
 ## The Regulars;
-- Create Bird Customers, with different expressions and dialogue
+- Create Bird Customers, and give them a simple way to express appetizer approval or dish disdain.
 - Create two timer systems; one for the whole round, and one for each customer, serving as their wait time.
 - Create points system that will vary based on order.
 - Create Diner Foreground and Background.
 
 ## The VIPs;
-- Everyone's a critic, but one in particular might make or break your career.  Suss out the influencer among your guests and make sure to treat them well.  If you don't, you might see a dip in business...
-- Write and integrate theme music for game.  Something bouncy and fun, but with just enough drive to keep things lively!
-- Tips are never expected, but always appreciated; facilitate a way for grateful birds to leave a lil' sumthin'.
+- Party Of Five?; Create a welcome page to greet the guest before the game begins.
+- We Value Your Feedback; give the clients different expressions and more dialogue options!
+Everyone's A Critic, but one in particular might make or break your career.  Suss out the influencer among your guests and make sure to treat them well.  If you don't, you might see a dip in business...
+- If Music Be The Food Of Love; Write and integrate theme music for game.  Something bouncy and fun, but with just enough drive to keep things lively!
+- Tips Are Never Expected, But Always Appreciated; facilitate a way for grateful birds to leave a lil' sumthin'.
 - Bonus Worm!
-- Night Mode: You get all sorts after-hours.  Different clients will bring different challenges, and might ask for different menu items.
+- 24-7; You get all sorts after-hours.  Different clients will bring different challenges, and might ask for different menu items.
 
 ### Credits:
 - [Unsplash](https://unsplash.com/) for free stock photos
 - [Adobe Fresco](https://www.adobe.com/products/fresco.html) for hand-drawn assets
-- Original Artwork: Edward Hopper - "Nighthawks at the Diner"
+- [Edward Hopper - "Nighthawks"](https://www.artic.edu/artworks/111628/nighthawks) for original painting
 
 ### Resources:
 - [Project Trello](https://trello.com/b/WmTPwUX4/bird-feeder-nighthawks-at-the-diner)
