@@ -31,3 +31,6 @@ Be the change you want to see in the world, and sling those seeds to keep those 
 - [Unsplash](https://unsplash.com/) for free stock photos
 - [Adobe Fresco](https://www.adobe.com/products/fresco.html) for hand-drawn assets
 - Original Artwork: Edward Hopper - "Nighthawks at the Diner"
+
+### Resources:
+- [Project Trello](https://trello.com/b/WmTPwUX4/bird-feeder-nighthawks-at-the-diner)
