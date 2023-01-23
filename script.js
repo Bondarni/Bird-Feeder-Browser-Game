@@ -11,8 +11,9 @@ const restaurant = document.querySelector('#game-area')
 let handsEmpty = true
 
 function countdown() {
+  restaurant.style.display = 'block'
   console.log('Now Open!')
-  let time = 61
+  let time = 3
   let countdown = setInterval(function () {
     time--
     document.querySelector('#clock').innerHTML = '00:' + time
@@ -20,9 +21,11 @@ function countdown() {
       clearInterval(countdown)
       console.log("We're Closed!")
       console.log("You've raked up " + score + ' points today.')
+      restaurant.style.display = 'none'
     }
   }, 1000)
 }
+// ^Timer Function^ - Credit to TAs and Stack Overflow for this one.  We have the time variable set within the function, then the variable attributed to setInterval that marks the seconds down.  We select the clock from the html as the place to put the time, and then the condition that stops the clock and logs the appropriate messages.
 
 const chooseOrder = () => {
   math.floor(math.random() * max)
