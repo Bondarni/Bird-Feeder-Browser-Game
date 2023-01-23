@@ -12,15 +12,15 @@ let handsEmpty = true
 
 function countdown() {
   restaurant.style.display = 'block'
-  console.log('Now Open!')
-  let time = 3
+  openSign.innerHTML = 'Now Open!'
+  let time = 61
   let countdown = setInterval(function () {
     time--
     document.querySelector('#clock').innerHTML = '00:' + time
     if (time === 0) {
       clearInterval(countdown)
-      console.log("We're Closed!")
-      console.log("You've raked up " + score + ' points today.')
+      openSign.innerHTML =
+        "We're Closed!<br><br>You've raked up " + score + ' points today.'
       restaurant.style.display = 'none'
     }
   }, 1000)
