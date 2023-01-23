@@ -1,0 +1,56 @@
+body {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+  justify-content: center;
+}
+
+#timer {
+  background-color: blueviolet;
+  height: 60px;
+  width: 120px;
+}
+
+#points {
+  grid-column-start: 5;
+  grid-column-end: auto;
+}
+
+#foh {
+  background-color: cyan;
+  grid-column-start: 2;
+  grid-column-end: 5;
+}
+
+#boh {
+  background-color: silver;
+}
+
+.food {
+  height: 50px;
+  width: 50px;
+  background-color: rgb(89, 180, 20);
+  border: solid 5px black;
+  border-radius: 50px;
+  text-align: center;
+}
+
+.customer {
+  height: 50px;
+  weight: 50px;
+  margin: 10px;
+  background-color: blue;
+}
+
+.plate {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  height: 50px;
+  width: 50px;
+  background-color: blanchedalmond;
+  border: solid 5px black;
+  border-radius: 50px;
+}
