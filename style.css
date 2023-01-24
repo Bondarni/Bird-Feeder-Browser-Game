@@ -60,7 +60,7 @@ body {
   grid-row-end: 4;
 }
 
-.seats {
+.seat {
   height: 50px;
   width: 50px;
   margin: 10px;

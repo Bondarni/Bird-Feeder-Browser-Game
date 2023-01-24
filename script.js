@@ -1,11 +1,12 @@
 let score = 0
 let scoreBoard = document.querySelector('#points')
 const foods = document.querySelectorAll('.food')
-const seeds = document.querySelector('#Seed')
-const grains = document.querySelector('#Grain')
-const berries = document.querySelector('#Berry')
-const plates = document.querySelectorAll('.plate')
-const seats = document.querySelectorAll('.seats')
+// const seeds = document.querySelector('#Seed')
+// const grains = document.querySelector('#Grain')
+// const berries = document.querySelector('#Berry')
+const guest = document.querySelectorAll('.customer')
+const plates = document.querySelectorAll('.customer > div.plate')
+const seats = document.querySelectorAll('.customer > div.seat')
 const openSign = document.querySelector('#start-game')
 const restaurant = document.querySelector('#game-area')
 let handsEmpty = true
@@ -21,7 +22,7 @@ function countdown() {
     if (time === 0) {
       clearInterval(countdown)
       openSign.innerHTML =
-        "We're Closed!<br><br>You've raked up " + score + ' points today.'
+        "We're Closed!<br><br>You've earned up " + score + ' points today.'
       restaurant.style.display = 'none'
     }
   }, 1000)
@@ -39,7 +40,7 @@ let emptyHands = () => {
 
 let takeOrder = (event) => {
   console.log(`I'm Hungry!`)
-  let chooseOrder = menuItems[(Math.random() * menuItems.length) | 0]
+  let chooseOrder = menuItems[Math.floor(Math.random() * menuItems.length)]
   console.log(`I'll have a ${chooseOrder}, please!`)
 }
 
@@ -49,10 +50,10 @@ let grabFood = (event) => {
   console.log(`You're holding a ` + dishName + `.`)
 }
 let orderUp = () => {
-  if (handsEmpty === false) {
+  if (handsEmpty === false /*&& chooseOrder === dishName*/) {
     score += 10
     scoreBoard.innerText = score
-    console.log('Order up!')
+    console.log('Thanks!')
     emptyHands()
   } else {
     score -= 5
@@ -60,6 +61,9 @@ let orderUp = () => {
     console.log("Uh...Where's my food?")
   }
 }
+
+let setTicket = () => {}
+
 let openService = (event) => {
   countdown()
 }
@@ -69,12 +73,15 @@ let openService = (event) => {
 // berries.addEventListener('click', grabFood)
 
 openSign.addEventListener('click', countdown)
+
 foods.forEach(function (food) {
   food.addEventListener('click', grabFood)
 })
+
 plates.forEach(function (plate) {
   plate.addEventListener('click', orderUp)
 })
+
 seats.forEach(function (seat) {
   seat.addEventListener('click', takeOrder)
 })
