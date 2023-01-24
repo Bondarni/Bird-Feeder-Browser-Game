@@ -9,10 +9,21 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="clock"></div>
-  <div id="start-game">Click Here to Open For Business!</div>
-  <div id="points">00</div>
+  <div id="start-game">
+    <h1>( ^^ > <em>Bird Feeder</em> < ^^ )</h1>
+    <h3>Feed your feathered friends and see how many points you can get before the restaurant closes!</h3>
+    <p>Sure you could just put some seed in a box and hang it up; but food-service is all about <em>connection.</em></p>
+    <ul>
+      <li>Take orders</li>
+      <li>Deliver dishes</li>
+      <li>Don't keep 'em waiting too long!</li>
+    </ul>
+    <p>You'll get points for good service, and lose points for incorrect orders.</p>
+    <button>Click here to Start Service!</button>
+  </div>
   <section id="game-area">
+    <div id="clock"></div>
+    <div id="points">00</div>
     <section id="foh">
       <div class="customer" id="b1">
         <div class="seat"></div>
@@ -33,5 +44,11 @@
       <div class="food" id="Berry">Berry</div>
     </section>  
   </section>
+  <div id="end-game">
+    <h1>( -- >zzz <em>Sorry, We're closed!</em> zzz< -- )</h1>
+    <p id="results"></p>
+    <p id="review"></p>
+    <button>Try again?</button>
+  </div>
 </body>
 </html>

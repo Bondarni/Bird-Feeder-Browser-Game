@@ -1,7 +1,40 @@
 body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 100px);
+  grid-template-rows: repeat(5, 1fr);
+  background-color: rgb(110, 193, 253);
+}
+
+
+#start-game {
+  display: none;
+  text-align: center;
+  height: auto;
+  width: auto;
+  background-color: white;
+  color: red;
+  border: solid 3px black;
+  grid-area: 2 / 2 / 5 / 5;
+  padding: 10px;
+}
+
+#end-game {
+  display: none;
+  text-align: center;
+  height: auto;
+  width: auto;
+  background-color: white;
+  color: red;
+  border: solid 3px black;
+  grid-area: 2 / 2 / 5 / 5;
+  padding: 10px;
+}
+
+#game-area {
+  /* display: none; */
+  /* grid-column-start: 2; */
+  /* grid-column-end: 5; */
+  /* justify-self: stretch */
 }
 
 #clock {
@@ -11,39 +44,23 @@ body {
   width: 120px;
 }
 
-#start-game {
-  display: block;
-  height: 80px;
-  width: 120px;
-  background-color: white;
-  color: red;
-  border: solid 3px black;
-  grid-column-start: 3;
-}
-
 #points {
   display: block;
-  grid-column-start: 5;
-  grid-column-end: auto;
+  /* grid-column-start: 5; */
+  /* grid-column-end: auto; */
 }
 
-#game-area {
-  display: none;
-  grid-column-start: 2;
-  grid-column-end: 5;
-  justify-self: stretch
-}
 
 #foh {
   background-color: cyan;
-  grid-column-start: 2;
-  grid-column-end: 5;
-  justify-self: stretch;
+  /* grid-column-start: 2; */
+  /* grid-column-end: 5; */
+  /* justify-self: stretch; */
 }
 
 #boh {
-  grid-column-start: 2;
-  grid-column-end: 5;
+  /* grid-column-start: 2;
+  grid-column-end: 5; */
   background-color: silver;
 }
 
@@ -54,10 +71,10 @@ body {
   border: solid 5px black;
   border-radius: 50px;
   text-align: center;
-  grid-column-start: 2;
+  /* grid-column-start: 2;
   grid-column-end: 5;
   grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-end: 4; */
 }
 
 .seat {
@@ -65,17 +82,17 @@ body {
   width: 50px;
   margin: 10px;
   background-color: blue;
-  grid-column-start: 1;
+  /* grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 1;
-  grid-row-end: 2;
+  grid-row-end: 2; */
 }
 
 .plate {
-  grid-column-start: 1;
+  /* grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-end: 3; */
   height: 50px;
   width: 50px;
   background-color: blanchedalmond;

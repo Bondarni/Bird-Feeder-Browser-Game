@@ -4,7 +4,11 @@ const foods = document.querySelectorAll('.food')
 const guest = document.querySelectorAll('.customer')
 const plates = document.querySelectorAll('.customer > div.plate')
 const seats = document.querySelectorAll('.customer > div.seat')
-const openSign = document.querySelector('#start-game')
+const startScreen = document.querySelector('#start-game')
+const endScreen = document.querySelector('#end-game')
+const results = document.querySelector('#end-game > p#results')
+const review = document.querySelector('#end-game > p#review')
+const startGame = document.querySelectorAll('button')
 const restaurant = document.querySelector('#game-area')
 let handsEmpty = true
 const menuItems = ['Seed', 'Grain', 'Berry']
@@ -13,16 +17,25 @@ let chooseOrder
 
 function countdown() {
   restaurant.style.display = 'grid'
-  openSign.innerHTML = 'Now Open!'
-  let time = 61
+  startScreen.style.display = 'none'
+  let time = 3
   let countdown = setInterval(function () {
     time--
     document.querySelector('#clock').innerHTML = '00:' + time
     if (time === 0) {
       clearInterval(countdown)
-      openSign.innerHTML =
-        "We're Closed!<br><br>You've earned up " + score + ' points today.'
       restaurant.style.display = 'none'
+      endScreen.style.display = 'block'
+      results.innerHTML = `You've earned ${score} points today.`
+      if (score >= 90) {
+        review.innerHTML = `Nicely done!  These birds might just put a Michelin Star in your sky!`
+      } else if (score >= 50 && score <= 89) {
+        review.innerHTML = `Not bad, not bad at all.`
+      } else if (score >= 10 && score <= 49) {
+        review.innerHTML = `There's room for improvement.  Keep it up!`
+      } else {
+        review.innerHTML = `Don't feel bad.  The restaurant business can be tough.  Maybe you can join the circus?`
+      }
     }
   }, 1000)
 }
@@ -69,7 +82,9 @@ let openService = (event) => {
   countdown()
 }
 
-openSign.addEventListener('click', countdown)
+startGame.forEach(function (btn) {
+  btn.addEventListener('click', countdown)
+})
 
 foods.forEach(function (food) {
   food.addEventListener('click', grabFood)
