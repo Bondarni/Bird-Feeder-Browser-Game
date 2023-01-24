@@ -11,6 +11,7 @@ const openSign = document.querySelector('#start-game')
 const restaurant = document.querySelector('#game-area')
 let handsEmpty = true
 const menuItems = ['Seed', 'Grain', 'Berry']
+let chooseOrder
 
 function countdown() {
   restaurant.style.display = 'grid'
@@ -40,7 +41,7 @@ let emptyHands = () => {
 
 let takeOrder = (event) => {
   console.log(`I'm Hungry!`)
-  let chooseOrder = menuItems[Math.floor(Math.random() * menuItems.length)]
+  chooseOrder = menuItems[Math.floor(Math.random() * menuItems.length)]
   console.log(`I'll have a ${chooseOrder}, please!`)
 }
 
@@ -50,7 +51,7 @@ let grabFood = (event) => {
   console.log(`You're holding a ` + dishName + `.`)
 }
 let orderUp = () => {
-  if (handsEmpty === false /*&& chooseOrder === dishName*/) {
+  if (handsEmpty === false && chooseOrder === dishName) {
     score += 10
     scoreBoard.innerText = score
     console.log('Thanks!')
@@ -61,8 +62,6 @@ let orderUp = () => {
     console.log("Uh...Where's my food?")
   }
 }
-
-let setTicket = () => {}
 
 let openService = (event) => {
   countdown()
