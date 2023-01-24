@@ -1,9 +1,7 @@
 body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  align-items: center;
-  justify-content: center;
+  grid-template-rows: repeat(5, 100px);
 }
 
 #clock {
@@ -33,15 +31,19 @@ body {
   display: none;
   grid-column-start: 2;
   grid-column-end: 5;
+  justify-self: stretch
 }
 
 #foh {
   background-color: cyan;
   grid-column-start: 2;
   grid-column-end: 5;
+  justify-self: stretch;
 }
 
 #boh {
+  grid-column-start: 2;
+  grid-column-end: 5;
   background-color: silver;
 }
 
@@ -52,20 +54,28 @@ body {
   border: solid 5px black;
   border-radius: 50px;
   text-align: center;
-}
-
-.customer {
-  height: 50px;
-  width: 50px;
-  margin: 10px;
-  background-color: blue;
-}
-
-.plate {
   grid-column-start: 2;
   grid-column-end: 5;
   grid-row-start: 3;
   grid-row-end: 4;
+}
+
+.seats {
+  height: 50px;
+  width: 50px;
+  margin: 10px;
+  background-color: blue;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.plate {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
   height: 50px;
   width: 50px;
   background-color: blanchedalmond;
