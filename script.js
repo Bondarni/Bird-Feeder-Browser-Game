@@ -1,9 +1,6 @@
 let score = 0
 let scoreBoard = document.querySelector('#points')
 const foods = document.querySelectorAll('.food')
-// const seeds = document.querySelector('#Seed')
-// const grains = document.querySelector('#Grain')
-// const berries = document.querySelector('#Berry')
 const guest = document.querySelectorAll('.customer')
 const plates = document.querySelectorAll('.customer > div.plate')
 const seats = document.querySelectorAll('.customer > div.seat')
@@ -12,6 +9,7 @@ const restaurant = document.querySelector('#game-area')
 let handsEmpty = true
 const menuItems = ['Seed', 'Grain', 'Berry']
 let chooseOrder
+// ^Remember This^ for declaring globally scoped variables.  They don't need to "=" anything, they just need to be listed.
 
 function countdown() {
   restaurant.style.display = 'grid'
@@ -56,6 +54,10 @@ let orderUp = () => {
     scoreBoard.innerText = score
     console.log('Thanks!')
     emptyHands()
+  } else if (handsEmpty === false && chooseOrder !== dishName) {
+    score -= 5
+    scoreBoard.innerText = score
+    console.log("This isn't what I asked for...")
   } else {
     score -= 5
     scoreBoard.innerText = score
@@ -66,10 +68,6 @@ let orderUp = () => {
 let openService = (event) => {
   countdown()
 }
-
-// seeds.addEventListener('click', grabFood)
-// grains.addEventListener('click', grabFood)
-// berries.addEventListener('click', grabFood)
 
 openSign.addEventListener('click', countdown)
 
