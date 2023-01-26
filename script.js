@@ -3,6 +3,8 @@ const startGame = document.querySelectorAll('button')
 const endScreen = document.querySelector('#end-game')
 const results = document.querySelector('#results')
 const review = document.querySelector('#review')
+const controller = new AbortController()
+const signal = controller.signal
 
 let score = 0
 let scoreBoard = document.querySelector('#points')
@@ -49,6 +51,9 @@ let orderGiven
 //   plumage: '',
 //   patience: 10
 // }
+function waitTime() {
+  setInterval(function () {})
+}
 function countdown() {
   restaurant.style.display = 'grid'
   startScreen.style.display = 'none'
@@ -86,7 +91,6 @@ const bird1 = {
   plate: plates[0],
   order: [],
   plumage: '',
-  patience: 10,
   orderGiven: false
 }
 const bird2 = {
@@ -95,7 +99,7 @@ const bird2 = {
   plate: plates[1],
   order: [],
   plumage: '',
-  patience: 10
+  orderGiven: false
 }
 const bird3 = {
   chirp: chirps[2],
@@ -103,19 +107,21 @@ const bird3 = {
   plate: plates[2],
   order: '',
   plumage: '',
-  patience: 10
+  orderGiven: false
 }
 let takeOrder = (event) => {
-  chooseOrder = menuItems[Math.floor(Math.random() * menuItems.length)]
+  let chooseOrder = menuItems[Math.floor(Math.random() * menuItems.length)]
   let currentId = parseInt(event.target.id[1])
   if (currentId === 1) {
     bird1.order = chooseOrder
     chirps[0].style.display = 'flex'
     chirps[0].innerText = `${chooseOrder}, please!`
+    console.log(chooseOrder)
     if (bird1.orderGiven === true) {
       chirps[0].innerText = `I already ordered...`
     } else {
       bird1.orderGiven = true
+      event.target.removeEventListener('click', takeOrder)
     }
   } else if (currentId === 2) {
     bird2.order = chooseOrder
@@ -125,15 +131,17 @@ let takeOrder = (event) => {
       chirps[1].innerText = `I already ordered...`
     } else {
       bird2.orderGiven = true
+      event.target.removeEventListener('click', takeOrder)
     }
   } else if (currentId === 3) {
     bird3.order = chooseOrder
     chirps[2].style.display = 'flex'
     chirps[2].innerText = `${chooseOrder}, please!`
-    if (bird1.orderGiven === true) {
+    if (bird3.orderGiven === true) {
       chirps[2].innerText = `I already ordered...`
     } else {
-      bird2.orderGiven = true
+      bird3.orderGiven = true
+      event.target.removeEventListener('click', takeOrder)
     }
   }
 }
@@ -211,6 +219,7 @@ const openService = (event) => {
 
 const showUp1 = () => {
   s1.style.display = 'flex'
+  s1.addEventListener('click', takeOrder)
 }
 const payUp1 = () => {
   s1.style.display = 'none'
@@ -219,6 +228,7 @@ const payUp1 = () => {
 }
 const showUp2 = () => {
   s2.style.display = 'flex'
+  s1.addEventListener('click', takeOrder)
 }
 const payUp2 = () => {
   s2.style.display = 'none'
@@ -227,6 +237,7 @@ const payUp2 = () => {
 }
 const showUp3 = () => {
   s3.style.display = 'flex'
+  s1.addEventListener('click', takeOrder)
 }
 const payUp3 = () => {
   s3.style.display = 'none'
