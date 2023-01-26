@@ -86,7 +86,8 @@ const bird1 = {
   plate: plates[0],
   order: [],
   plumage: '',
-  patience: 10
+  patience: 10,
+  orderGiven: false
 }
 const bird2 = {
   chirp: chirps[1],
@@ -111,17 +112,29 @@ let takeOrder = (event) => {
     bird1.order = chooseOrder
     chirps[0].style.display = 'flex'
     chirps[0].innerText = `${chooseOrder}, please!`
-    orderGiven = true
+    if (bird1.orderGiven === true) {
+      chirps[0].innerText = `I already ordered...`
+    } else {
+      bird1.orderGiven = true
+    }
   } else if (currentId === 2) {
     bird2.order = chooseOrder
     chirps[1].style.display = 'flex'
     chirps[1].innerText = `${chooseOrder}, please!`
-    orderGiven = true
+    if (bird2.orderGiven === true) {
+      chirps[1].innerText = `I already ordered...`
+    } else {
+      bird2.orderGiven = true
+    }
   } else if (currentId === 3) {
     bird3.order = chooseOrder
     chirps[2].style.display = 'flex'
     chirps[2].innerText = `${chooseOrder}, please!`
-    orderGiven = true
+    if (bird1.orderGiven === true) {
+      chirps[2].innerText = `I already ordered...`
+    } else {
+      bird2.orderGiven = true
+    }
   }
 }
 
@@ -137,6 +150,7 @@ let orderUp1 = () => {
     scoreBoard.innerText = score
     bird1.order = ''
     chirps[0].innerText = 'Thanks!'
+    bird1.orderGiven = false
     setTimeout(payUp1, 2000)
     setTimeout(showUp1, 3000)
     emptyHands()
@@ -156,6 +170,7 @@ let orderUp2 = () => {
     scoreBoard.innerText = score
     bird2.order = ''
     chirps[1].innerText = 'Thanks!'
+    bird2.orderGiven = false
     setTimeout(payUp2, 2000)
     setTimeout(showUp2, 3000)
     emptyHands()
@@ -175,6 +190,7 @@ let orderUp3 = () => {
     scoreBoard.innerText = score
     bird3.order = ''
     chirps[2].innerText = 'Thanks!'
+    bird3.orderGiven = false
     setTimeout(payUp3, 2000)
     setTimeout(showUp3, 3000)
     emptyHands()
@@ -226,15 +242,6 @@ foods.forEach(function (food) {
   food.addEventListener('click', grabFood)
 })
 
-// plates.forEach(function (plate) {
-//   plate.addEventListener('click', orderUp1)
-// })
-// plates.forEach(function (plate) {
-//   plate.addEventListener('click', orderUp2)
-// })
-// plates.forEach(function (plate) {
-//   plate.addEventListener('click', orderUp3)
-// })
 p1.addEventListener('click', orderUp1)
 p2.addEventListener('click', orderUp2)
 p3.addEventListener('click', orderUp3)
