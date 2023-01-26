@@ -3,8 +3,6 @@ const startGame = document.querySelectorAll('button')
 const endScreen = document.querySelector('#end-game')
 const results = document.querySelector('#results')
 const review = document.querySelector('#review')
-const controller = new AbortController()
-const signal = controller.signal
 
 let score = 0
 let scoreBoard = document.querySelector('#points')
@@ -24,43 +22,19 @@ const t1 = document.querySelector('#t1')
 const t2 = document.querySelector('#t2')
 const t3 = document.querySelector('#t3')
 const foods = document.querySelectorAll('.food')
+
 let handsEmpty = true
 let inMyHand = []
 const menuItems = ['Seed', 'Grain', 'Berry']
 let chooseOrder = menuItems[Math.floor(Math.random() * menuItems.length)]
-const orderPhrases = [
-  `I'll have a ${chooseOrder}, please.`,
-  `I want a ${chooseOrder}!`,
-  `${chooseOrder}; and make it snappy.`,
-  `Let's try the ${chooseOrder}`,
-  `Is the ${chooseOrder} any good?`
-]
 let orderGiven
-// const sayWhat = orderPhrases[Math.floor(Math.random() * orderPhrases.length)]
-// const bird4 = {
-//   plate: plates[3],
-//   order: [],
-//   chirp: '',
-//   plumage: '',
-//   patience: 10
-// }
-// const bird5 = {
-//   plate: plates[4],
-//   order: [],
-//   chirp: '',
-//   plumage: '',
-//   patience: 10
-// }
-function waitTime() {
-  setInterval(function () {})
-}
+
 function countdown() {
   restaurant.style.display = 'grid'
   startScreen.style.display = 'none'
   endScreen.style.display = 'none'
-  let time = 600
+  let time = 60
   let countdown = setInterval(function () {
-    // setTimeout(showUp, 1000)
     time--
     document.querySelector('#clock').innerHTML = '00:' + time
     if (time === 0) {
@@ -91,7 +65,8 @@ const bird1 = {
   plate: plates[0],
   order: [],
   plumage: '',
-  orderGiven: false
+  orderGiven: false,
+  orderCorrect: false
 }
 const bird2 = {
   chirp: chirps[1],
@@ -116,7 +91,6 @@ let takeOrder = (event) => {
     bird1.order = chooseOrder
     chirps[0].style.display = 'flex'
     chirps[0].innerText = `${chooseOrder}, please!`
-    console.log(chooseOrder)
     if (bird1.orderGiven === true) {
       chirps[0].innerText = `I already ordered...`
     } else {
@@ -150,18 +124,18 @@ let grabFood = (event) => {
   dishName = event.target.innerText
   inMyHand.push(dishName)
   handsEmpty = false
-  console.log(`You're holding a ` + dishName + `.`)
 }
 let orderUp1 = () => {
   if (handsEmpty === false && bird1.order === dishName) {
+    bird1.orderCorrect = true
     score += 10
     scoreBoard.innerText = score
     bird1.order = ''
     chirps[0].innerText = 'Thanks!'
     bird1.orderGiven = false
     setTimeout(payUp1, 2000)
-    setTimeout(showUp1, 3000)
     emptyHands()
+    setTimeout(showUp1, 3000)
   } else if (handsEmpty === false && bird1.order !== dishName) {
     score -= 5
     scoreBoard.innerText = score
@@ -174,14 +148,15 @@ let orderUp1 = () => {
 }
 let orderUp2 = () => {
   if (handsEmpty === false && bird2.order === dishName) {
+    bird2.orderCorrect = true
     score += 10
     scoreBoard.innerText = score
     bird2.order = ''
     chirps[1].innerText = 'Thanks!'
     bird2.orderGiven = false
     setTimeout(payUp2, 2000)
-    setTimeout(showUp2, 3000)
     emptyHands()
+    setTimeout(showUp2, 3000)
   } else if (handsEmpty === false && bird2.order !== dishName) {
     score -= 5
     scoreBoard.innerText = score
@@ -194,14 +169,15 @@ let orderUp2 = () => {
 }
 let orderUp3 = () => {
   if (handsEmpty === false && bird3.order === dishName) {
+    bird3.orderCorrect = true
     score += 10
     scoreBoard.innerText = score
     bird3.order = ''
     chirps[2].innerText = 'Thanks!'
     bird3.orderGiven = false
     setTimeout(payUp3, 2000)
-    setTimeout(showUp3, 3000)
     emptyHands()
+    setTimeout(showUp3, 3000)
   } else if (handsEmpty === false && bird3.order !== dishName) {
     score -= 5
     scoreBoard.innerText = score
@@ -213,31 +189,94 @@ let orderUp3 = () => {
   }
 }
 
-const openService = (event) => {
-  countdown()
-}
-
-const showUp1 = () => {
+function showUp1() {
   s1.style.display = 'flex'
   s1.addEventListener('click', takeOrder)
+  let patience = 10
+  let waitTime1 = () => {
+    patience--
+    console.log(patience)
+    if (bird1.orderCorrect === true) {
+      clearInterval(wait1)
+      bird1.orderCorrect = false
+    } else if (patience === 0) {
+      t1.style.display = 'flex'
+      t1.innerText = "I'm outta here."
+      score -= 10
+      scoreBoard.innerText = score
+      clearInterval(wait1)
+      bird1.orderGiven = false
+      setTimeout(payUp1, 2000)
+      setTimeout(showUp1, 3000)
+    } else if (patience <= 4) {
+      t1.style.display = 'flex'
+      t1.innerText = '...service is slow...'
+    }
+  }
+  let wait1 = setInterval(waitTime1, 1000)
 }
 const payUp1 = () => {
   s1.style.display = 'none'
   t1.style.display = 'none'
   chirps[0].innerText = ''
 }
-const showUp2 = () => {
+function showUp2() {
   s2.style.display = 'flex'
-  s1.addEventListener('click', takeOrder)
+  s2.addEventListener('click', takeOrder)
+  let patience = 10
+  let waitTime2 = () => {
+    patience--
+    console.log(patience)
+    if (bird2.orderCorrect === true) {
+      clearInterval(wait2)
+      bird2.orderCorrect = false
+    } else if (patience === 0) {
+      t2.style.display = 'flex'
+      t2.innerText = "I'm outta here."
+      score -= 10
+      scoreBoard.innerText = score
+      clearInterval(wait2)
+      bird2.orderGiven = false
+      setTimeout(payUp2, 2000)
+      setTimeout(showUp2, 3000)
+    } else if (patience <= 4) {
+      t2.style.display = 'flex'
+      t2.innerText = '...service is slow...'
+    }
+  }
+  let wait2 = setInterval(waitTime2, 1000)
 }
+
 const payUp2 = () => {
   s2.style.display = 'none'
   t2.style.display = 'none'
   chirps[1].innerText = ''
 }
-const showUp3 = () => {
+function showUp3() {
   s3.style.display = 'flex'
-  s1.addEventListener('click', takeOrder)
+  s3.addEventListener('click', takeOrder)
+  let patience = 10
+  let waitTime3 = () => {
+    patience--
+    console.log(patience)
+    if (bird3.orderCorrect === true) {
+      clearInterval(wait3)
+      bird3.orderCorrect = false
+    } else if (patience === 0) {
+      t3.style.display = 'flex'
+      t3.innerText = "I'm outta here."
+      score -= 10
+      scoreBoard.innerText = score
+      clearInterval(wait3)
+      bird3.orderGiven = false
+      setTimeout(payUp3, 2000)
+      setTimeout(showUp3, 3000)
+    } else if (patience <= 4) {
+      t3.style.display = 'flex'
+      t3.innerText = '...service is slow...'
+    }
+  }
+  let wait3 = setInterval(waitTime3, 1000)
 }
 const payUp3 = () => {
   s3.style.display = 'none'
@@ -245,8 +284,15 @@ const payUp3 = () => {
   chirps[2].innerText = ''
 }
 
+const openService = () => {
+  countdown()
+  showUp1()
+  showUp2()
+  showUp3()
+}
+
 startGame.forEach(function (btn) {
-  btn.addEventListener('click', countdown)
+  btn.addEventListener('click', openService)
 })
 
 foods.forEach(function (food) {

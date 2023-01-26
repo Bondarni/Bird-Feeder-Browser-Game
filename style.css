@@ -83,7 +83,24 @@ body {
   border: solid white 2px;
   border-radius: 10px 10px 10px 0px;  
 }
-.seat {
+#s1 {
+  display: none;
+  height: 50px;
+  width: 50px;
+  margin: 10px;
+  justify-content: center;
+  background-color: blue;
+}
+#s2 {
+  display: none;
+  height: 50px;
+  width: 50px;
+  margin: 10px;
+  justify-content: center;
+  background-color: blue;
+}
+#s3 {
+  display: none;
   height: 50px;
   width: 50px;
   margin: 10px;
