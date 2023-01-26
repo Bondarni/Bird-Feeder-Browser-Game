@@ -3,7 +3,6 @@ const startGame = document.querySelectorAll('button')
 const endScreen = document.querySelector('#end-game')
 const results = document.querySelector('#results')
 const review = document.querySelector('#review')
-console.log(review)
 
 let score = 0
 let scoreBoard = document.querySelector('#points')
@@ -11,50 +10,52 @@ let scoreBoard = document.querySelector('#points')
 const restaurant = document.querySelector('#game-area')
 const guests = document.querySelectorAll('.customer')
 const plates = document.querySelectorAll('.plate')
+const p1 = document.querySelector('#p1')
+const p2 = document.querySelector('#p2')
+const p3 = document.querySelector('#p3')
 const seats = document.querySelectorAll('.seat')
+const s1 = document.querySelector('#s1')
+const s2 = document.querySelector('#s2')
+const s3 = document.querySelector('#s3')
 const chirps = document.querySelectorAll('.text')
+const t1 = document.querySelector('#t1')
+const t2 = document.querySelector('#t2')
+const t3 = document.querySelector('#t3')
 const foods = document.querySelectorAll('.food')
 let handsEmpty = true
+let inMyHand = []
 const menuItems = ['Seed', 'Grain', 'Berry']
-let chooseOrder
-// ^Remember This^ for declaring globally scoped variables.  They don't need to "=" anything, they just need to be listed.
-const bird1 = {
-  plate: plates[0],
-  order: [],
-  chirp: '',
-  plumage: ''
-}
-const bird2 = {
-  plate: plates[0],
-  order: [],
-  chirp: '',
-  plumage: ''
-}
-const bird3 = {
-  plate: plates[0],
-  order: [],
-  chirp: '',
-  plumage: ''
-}
-const bird4 = {
-  plate: plates[0],
-  order: [],
-  chirp: '',
-  plumage: ''
-}
-const bird5 = {
-  plate: plates[0],
-  order: [],
-  chirp: '',
-  plumage: ''
-}
+let chooseOrder = menuItems[Math.floor(Math.random() * menuItems.length)]
+const orderPhrases = [
+  `I'll have a ${chooseOrder}, please.`,
+  `I want a ${chooseOrder}!`,
+  `${chooseOrder}; and make it snappy.`,
+  `Let's try the ${chooseOrder}`,
+  `Is the ${chooseOrder} any good?`
+]
+let orderGiven
+// const sayWhat = orderPhrases[Math.floor(Math.random() * orderPhrases.length)]
+// const bird4 = {
+//   plate: plates[3],
+//   order: [],
+//   chirp: '',
+//   plumage: '',
+//   patience: 10
+// }
+// const bird5 = {
+//   plate: plates[4],
+//   order: [],
+//   chirp: '',
+//   plumage: '',
+//   patience: 10
+// }
 function countdown() {
   restaurant.style.display = 'grid'
   startScreen.style.display = 'none'
   endScreen.style.display = 'none'
-  let time = 3
+  let time = 600
   let countdown = setInterval(function () {
-    setTimeout(showUp, 1000)
+    // setTimeout(showUp, 1000)
     time--
     document.querySelector('#clock').innerHTML = '00:' + time
     if (time === 0) {
@@ -74,51 +75,117 @@ function countdown() {
     }
   }, 1000)
 }
-// ^Timer Function^ - Credit to TAs and Stack Overflow for this one.  We have the time variable set within the function, then the variable attributed to setInterval that marks the seconds down.  We select the clock from the html as the place to put the time, and then the condition that stops the clock and logs the appropriate messages.
-
-// const birds = {
-//   names: ['Ness', 'Heather', 'Bill', 'Chip', 'Gale', 'Flynn'],
-//   waitCount: 10
-// }
 
 let emptyHands = () => {
   handsEmpty = true
+  inMyHand = []
 }
-
+const bird1 = {
+  chirp: chirps[0],
+  seat: seats[0],
+  plate: plates[0],
+  order: [],
+  plumage: '',
+  patience: 10
+}
+const bird2 = {
+  chirp: chirps[1],
+  seat: seats[1],
+  plate: plates[1],
+  order: [],
+  plumage: '',
+  patience: 10
+}
+const bird3 = {
+  chirp: chirps[2],
+  seat: seats[2],
+  plate: plates[2],
+  order: '',
+  plumage: '',
+  patience: 10
+}
 let takeOrder = (event) => {
   chooseOrder = menuItems[Math.floor(Math.random() * menuItems.length)]
-  console.log(`I'll have a ${chooseOrder}, please!`)
-  chirps.forEach(function (chirp) {
-    chirp.style.display = 'block'
-    chirp.innerText = `I'll have a ${chooseOrder}, please!`
-  })
+  let currentId = parseInt(event.target.id[1])
+  if (currentId === 1) {
+    bird1.order = chooseOrder
+    chirps[0].style.display = 'flex'
+    chirps[0].innerText = `${chooseOrder}, please!`
+    orderGiven = true
+  } else if (currentId === 2) {
+    bird2.order = chooseOrder
+    chirps[1].style.display = 'flex'
+    chirps[1].innerText = `${chooseOrder}, please!`
+    orderGiven = true
+  } else if (currentId === 3) {
+    bird3.order = chooseOrder
+    chirps[2].style.display = 'flex'
+    chirps[2].innerText = `${chooseOrder}, please!`
+    orderGiven = true
+  }
 }
+
 let grabFood = (event) => {
   dishName = event.target.innerText
+  inMyHand.push(dishName)
   handsEmpty = false
   console.log(`You're holding a ` + dishName + `.`)
 }
-let orderUp = () => {
-  if (handsEmpty === false && chooseOrder === dishName) {
+let orderUp1 = () => {
+  if (handsEmpty === false && bird1.order === dishName) {
     score += 10
     scoreBoard.innerText = score
-    chirps.forEach(function (chirp) {
-      chirp.innerText = `Thanks!`
-    })
-    timeoutID1 = setTimeout(payUp, 2000)
+    bird1.order = ''
+    chirps[0].innerText = 'Thanks!'
+    setTimeout(payUp1, 2000)
+    setTimeout(showUp1, 3000)
     emptyHands()
-  } else if (handsEmpty === false && chooseOrder !== dishName) {
+  } else if (handsEmpty === false && bird1.order !== dishName) {
     score -= 5
     scoreBoard.innerText = score
-    chirps.forEach(function (chirp) {
-      chirp.innerText = `This isn't what I asked for...`
-    })
+    chirps[0].innerText = `This isn't what I asked for...`
   } else {
     score -= 5
     scoreBoard.innerText = score
-    chirps.forEach(function (chirp) {
-      chirp.innerText = `Uh...where's my food?`
-    })
+    chirps[0].innerText = `Uh...where's my food?`
+  }
+}
+let orderUp2 = () => {
+  if (handsEmpty === false && bird2.order === dishName) {
+    score += 10
+    scoreBoard.innerText = score
+    bird2.order = ''
+    chirps[1].innerText = 'Thanks!'
+    setTimeout(payUp2, 2000)
+    setTimeout(showUp2, 3000)
+    emptyHands()
+  } else if (handsEmpty === false && bird2.order !== dishName) {
+    score -= 5
+    scoreBoard.innerText = score
+    chirps[1].innerText = `This isn't what I asked for...`
+  } else {
+    score -= 5
+    scoreBoard.innerText = score
+    chirps[1].innerText = `Uh...where's my food?`
+  }
+}
+let orderUp3 = () => {
+  if (handsEmpty === false && bird3.order === dishName) {
+    score += 10
+    scoreBoard.innerText = score
+    bird3.order = ''
+    chirps[2].innerText = 'Thanks!'
+    setTimeout(payUp3, 2000)
+    setTimeout(showUp3, 3000)
+    emptyHands()
+  } else if (handsEmpty === false && bird3.order !== dishName) {
+    score -= 5
+    scoreBoard.innerText = score
+    chirps[2].innerText = `This isn't what I asked for...`
+  } else {
+    score -= 5
+    scoreBoard.innerText = score
+    chirps[2].innerText = `Uh...where's my food?`
   }
 }
 
@@ -126,27 +193,30 @@ const openService = (event) => {
   countdown()
 }
 
-const showUp = () => {
-  guests.forEach(function (guest) {
-    guest.style.display = 'flex'
-  })
-  chirps.forEach(function (chirp) {
-    chirp.style.display = 'none'
-  })
+const showUp1 = () => {
+  s1.style.display = 'flex'
 }
-
-// setTimeout(showUp, 3000)
-
-const payUp = () => {
-  guests.forEach(function (guest) {
-    guest.style.display = 'none'
-  })
-  chirps.forEach(function (chirp) {
-    chirp.innerText = ''
-  })
+const payUp1 = () => {
+  s1.style.display = 'none'
+  t1.style.display = 'none'
+  chirps[0].innerText = ''
 }
-
-b1.addEventListener('click', takeOrder)
+const showUp2 = () => {
+  s2.style.display = 'flex'
+}
+const payUp2 = () => {
+  s2.style.display = 'none'
+  t2.style.display = 'none'
+  chirps[1].innerText = ''
+}
+const showUp3 = () => {
+  s3.style.display = 'flex'
+}
+const payUp3 = () => {
+  s3.style.display = 'none'
+  t3.style.display = 'none'
+  chirps[2].innerText = ''
+}
 
 startGame.forEach(function (btn) {
   btn.addEventListener('click', countdown)
@@ -156,12 +226,19 @@ foods.forEach(function (food) {
   food.addEventListener('click', grabFood)
 })
 
-plates.forEach(function (plate) {
-  plate.addEventListener('click', orderUp)
-})
+// plates.forEach(function (plate) {
+//   plate.addEventListener('click', orderUp1)
+// })
+// plates.forEach(function (plate) {
+//   plate.addEventListener('click', orderUp2)
+// })
+// plates.forEach(function (plate) {
+//   plate.addEventListener('click', orderUp3)
+// })
+p1.addEventListener('click', orderUp1)
+p2.addEventListener('click', orderUp2)
+p3.addEventListener('click', orderUp3)
 
 seats.forEach(function (seat) {
   seat.addEventListener('click', takeOrder)
 })
-
-//remember ^this^ for event listeners on classes.
