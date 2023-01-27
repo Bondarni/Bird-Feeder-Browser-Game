@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <script type="text/javascript" defer src="script.js"></script>
+  <link rel="stylesheet" type="text/css" href="diner.css">
+  <script type="text/javascript" defer src="diner.js"></script>
   <title>We're Open!</title>
 </head>
 <body>
@@ -15,25 +15,35 @@
     <div id="foh">
       <div class="customer" id="b1">
         <div class="text" id="t1"></div>
-        <div class="seat" id="s1"></div>
-        <div class="plate" id="p1"></div>
+        <img src="https://images.pexels.com/photos/946344/pexels-photo-946344.jpeg" class="seat" id="s1"></img>
       </div>
       <div class="customer" id="b2">
         <div class="text" id="t2"></div>
-        <div class="seat" id="s2"></div>
-        <div class="plate" id="p2"></div>
+        <img src="https://images.pexels.com/photos/459070/pexels-photo-459070.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="seat" id="s2"></img>
       </div>
       <div class="customer" id="b3">
         <div class="text" id="t3"></div>
-        <div class="seat" id="s3"></div>
-        <div class="plate" id="p3"></div>
+        <img src="https://images.pexels.com/photos/108322/pexels-photo-108322.jpeg" class="seat" id="s3"></img>
       </div>
     </div>
+    <div id="counter">
+      <div class="plate" id="p1"></div>
+      <div class="plate" id="p2"></div>
+      <div class="plate" id="p3"></div>
+    </div>    
     <div id="boh">
       <div class="food" id="Seed">Seed</div>
       <div class="food" id="Grain">Grain</div>
       <div class="food" id="Berry">Berry</div>
     </div>  
+  </div>
+  <div id="end-game">
+    <h1>( -- >zzz <em>Sorry, We're closed!</em> zzz< -- )</h1>
+    <p id="results"></p>
+    <p id="review"></p>
+    <a href="ruleset.html"><button id="ruleset">How To Play</button></a>
+    <a href="diner.html"><button class="startGame">Try again?</button></a>
+    <a href="birdfeederwelcome.html"><button id="backhome">Back To Home</button>
   </div>
 </body>
 </html>

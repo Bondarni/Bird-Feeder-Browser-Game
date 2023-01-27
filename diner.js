@@ -1,5 +1,5 @@
-const startScreen = document.querySelector('#start-game')
-const startGame = document.querySelectorAll('button')
+const startScreen = document.querySelector('#firstpage')
+const startGame = document.querySelectorAll('.startGame')
 const endScreen = document.querySelector('#end-game')
 const results = document.querySelector('#results')
 const review = document.querySelector('#review')
@@ -31,7 +31,6 @@ let orderGiven
 
 function countdown() {
   restaurant.style.display = 'grid'
-  startScreen.style.display = 'none'
   endScreen.style.display = 'none'
   let time = 60
   let countdown = setInterval(function () {
@@ -192,16 +191,18 @@ let orderUp3 = () => {
 function showUp1() {
   s1.style.display = 'flex'
   s1.addEventListener('click', takeOrder)
+  p1.addEventListener('click', orderUp1)
   let patience = 10
   let waitTime1 = () => {
     patience--
-    console.log(patience)
     if (bird1.orderCorrect === true) {
       clearInterval(wait1)
       bird1.orderCorrect = false
     } else if (patience === 0) {
+      s1.removeEventListener('click', takeOrder)
+      p1.removeEventListener('click', orderUp1)
       t1.style.display = 'flex'
-      t1.innerText = "I'm outta here."
+      t1.innerText = "Too slow; I'm outta here."
       score -= 10
       scoreBoard.innerText = score
       clearInterval(wait1)
@@ -209,8 +210,7 @@ function showUp1() {
       setTimeout(payUp1, 2000)
       setTimeout(showUp1, 3000)
     } else if (patience <= 4) {
-      t1.style.display = 'flex'
-      t1.innerText = '...service is slow...'
+      // put code in here that changes facial expression of character.  Turns red, checks watch, etc.
     }
   }
   let wait1 = setInterval(waitTime1, 1000)
@@ -223,16 +223,18 @@ const payUp1 = () => {
 function showUp2() {
   s2.style.display = 'flex'
   s2.addEventListener('click', takeOrder)
+  p2.addEventListener('click', orderUp2)
   let patience = 10
   let waitTime2 = () => {
     patience--
-    console.log(patience)
     if (bird2.orderCorrect === true) {
       clearInterval(wait2)
       bird2.orderCorrect = false
     } else if (patience === 0) {
+      s2.removeEventListener('click', takeOrder)
+      p2.removeEventListener('click', orderUp2)
       t2.style.display = 'flex'
-      t2.innerText = "I'm outta here."
+      t2.innerText = "Too slow; I'm outta here."
       score -= 10
       scoreBoard.innerText = score
       clearInterval(wait2)
@@ -240,8 +242,7 @@ function showUp2() {
       setTimeout(payUp2, 2000)
       setTimeout(showUp2, 3000)
     } else if (patience <= 4) {
-      t2.style.display = 'flex'
-      t2.innerText = '...service is slow...'
+      // impatience code
     }
   }
   let wait2 = setInterval(waitTime2, 1000)
@@ -255,16 +256,18 @@ const payUp2 = () => {
 function showUp3() {
   s3.style.display = 'flex'
   s3.addEventListener('click', takeOrder)
+  p3.addEventListener('click', orderUp3)
   let patience = 10
   let waitTime3 = () => {
     patience--
-    console.log(patience)
     if (bird3.orderCorrect === true) {
       clearInterval(wait3)
       bird3.orderCorrect = false
     } else if (patience === 0) {
+      s3.removeEventListener('click', takeOrder)
+      p3.removeEventListener('click', orderUp3)
       t3.style.display = 'flex'
-      t3.innerText = "I'm outta here."
+      t3.innerText = "Too slow; I'm outta here."
       score -= 10
       scoreBoard.innerText = score
       clearInterval(wait3)
@@ -272,8 +275,7 @@ function showUp3() {
       setTimeout(payUp3, 2000)
       setTimeout(showUp3, 3000)
     } else if (patience <= 4) {
-      t3.style.display = 'flex'
-      t3.innerText = '...service is slow...'
+      // impatience code
     }
   }
   let wait3 = setInterval(waitTime3, 1000)
@@ -284,24 +286,14 @@ const payUp3 = () => {
   chirps[2].innerText = ''
 }
 
-const openService = () => {
-  countdown()
-  showUp1()
-  showUp2()
-  showUp3()
-}
-
-startGame.forEach(function (btn) {
-  btn.addEventListener('click', openService)
-})
+countdown()
+showUp1()
+showUp2()
+showUp3()
 
 foods.forEach(function (food) {
   food.addEventListener('click', grabFood)
 })
-
-p1.addEventListener('click', orderUp1)
-p2.addEventListener('click', orderUp2)
-p3.addEventListener('click', orderUp3)
 
 seats.forEach(function (seat) {
   seat.addEventListener('click', takeOrder)

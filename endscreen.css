@@ -1,0 +1,21 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  background-color: rgb(110, 193, 253);
+}
+
+#end-game {
+  display: none;
+  text-align: center;
+  height: 75%;
+  width: 500px;
+  background-color: white;
+  color: red;
+  border: solid 3px black;
+  padding: 20px;
+  margin-top: 15%;
+  margin-bottom: 15%;
+}

@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <script type="text/javascript" defer src="script.js"></script>
+  <link rel="stylesheet" type="text/css" href="diner.css">
+  <script type="text/javascript" defer src="diner.js"></script>
   <title>Bird Feeder</title>
 </head>
 <body>
-  <div id="start-game">
+  <div id="firstpage">
     <h1>( ^^ > <em>Bird Feeder</em> < ^^ )</h1>
     <h3>Feed your feathered friends and see how many points you can get before service ends!</h3>
     <p>Sure you could just put some seed in a box and hang it up; but food-service is all about <em>connection.</em></p>
@@ -19,39 +19,16 @@
       <li>Don't keep 'em waiting too long!</li>
     </ul>
     <p>You'll get points for good service, and lose points for incorrect orders.</p>
-    <button>Click here to Start Service!</button>
+    <a href="ruleset.html"><button id="ruleset">How To Play</button></a>
+    <a href="diner.html"><button class="startGame">Click here to Start Service!</button></a>
   </div>
-  <div id="game-area">
-    <div id="clock"></div>
-    <div id="points">00</div>
-    <div id="foh">
-      <div class="customer" id="b1">
-        <div class="text" id="t1"></div>
-        <div class="seat" id="s1"></div>
-        <div class="plate" id="p1"></div>
-      </div>
-      <div class="customer" id="b2">
-        <div class="text" id="t2"></div>
-        <div class="seat" id="s2"></div>
-        <div class="plate" id="p2"></div>
-      </div>
-      <div class="customer" id="b3">
-        <div class="text" id="t3"></div>
-        <div class="seat" id="s3"></div>
-        <div class="plate" id="p3"></div>
-      </div>
-    </div>
-    <div id="boh">
-      <div class="food" id="Seed">Seed</div>
-      <div class="food" id="Grain">Grain</div>
-      <div class="food" id="Berry">Berry</div>
-    </div>  
-  </div>
+  
   <div id="end-game">
     <h1>( -- >zzz <em>Sorry, We're closed!</em> zzz< -- )</h1>
     <p id="results"></p>
     <p id="review"></p>
-    <button>Try again?</button>
+    <a href="ruleset.html"><button id="ruleset">How To Play</button></a>
+    <button class="startGame">Try again?</button>
   </div>
 </body>
 <a href="diner.html"></a>
