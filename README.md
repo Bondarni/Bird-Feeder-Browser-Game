@@ -23,15 +23,11 @@ For the start, finish, and gameplay pages, I created easy-to-read html pages sty
 For the game mechanics, I made liberal use of query selectors, event listeners, and functions.  
 The game round as an overall timer.  A similar mechanic is used to act as a patience counter for the birds. 
 
-UPDATE: 1/27/23
+UPDATE: 4/9/23
 Future edits of the game will also involve greater styling, and adding some of the VIP features listed below.
-In future edits of the game, the more redundant functions will be pared down to be just as effective with less lines of code.
+I plan on re-factoring the game using React.js instead of vanilla html/css/javascript.
 
 ## The Regulars;
-
-[x] Create Bird Customers, and give them a simple way to express appetizer approval or dish disdain.
-[x] Create two timer systems; one for the whole round, and one for each customer, serving as their wait time.
-- Create points system that will vary based on order.
 - Create Diner Foreground and Background.
 
 ## The VIPs;
@@ -43,6 +39,7 @@ In future edits of the game, the more redundant functions will be pared down to 
 - Tips Are Never Expected, But Always Appreciated; facilitate a way for grateful birds to leave a lil' sumthin'.
 - Bonus Worm!
 - 24-7; You get all sorts after-hours. Different clients will bring different challenges, and might ask for different menu items.
+- Dine and Dash; Squirrels also deserve treats once in a while, but they may just abscond with some or all of your ingredients!  They'll have to return what they took, but only if you catch them.
 
 ### Credits:
 
